@@ -14,8 +14,12 @@ return new class extends Migration {
     {
         Schema::create('regions', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->json('name');
+            $table->foreignId('parent_id')
+                ->nullable()
+                ->constrained('regions')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }
