@@ -26,7 +26,7 @@ class EmailVerificationCodeController extends Controller
      *  operationId="storeEmailVerificationCode",
      *  summary="Insert a new EmailVerificationCode",
      *  description="Insert a new EmailVerificationCode",
-     *  tags={"EmailVerificationCodes"},
+     *  tags={"login"},
      *  path="/api/emailverificationcode",
      *  @OA\RequestBody(
      *    description="EmailVerificationCode to create",
@@ -71,7 +71,7 @@ class EmailVerificationCodeController extends Controller
      *   summary="Show a EmailVerificationCode from his Id",
      *   description="Show a EmailVerificationCode from his Id",
      *   operationId="showEmailVerificationCode",
-     *   tags={"EmailVerificationCodes"},
+     *   tags={"login"},
      *   @OA\Parameter(ref="#/components/parameters/EmailVerificationCode--id"),
      *   @OA\Response(
      *     response=200,

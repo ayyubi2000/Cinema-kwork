@@ -17,7 +17,13 @@ return [
     'moderator' => [
 
     ],
+    'suspect_user' => [
+
+    ],
     'user' => [
+
+    ],
+    'super_user' => [
 
     ]
 ];

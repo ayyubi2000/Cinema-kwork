@@ -10,10 +10,10 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="Virtual muzey",
- *      description="Documentation for virtual muzey admin dashboard and main site",
+ *      title="kinoage",
+ *      description="Documentation for kinoage admin dashboard and main site",
  *      @OA\Contact(
- *          email="s.murodjonov@uzinfocom.uz"
+ *          email="ayubxonnematov@gmail.com",
  *      ),
  *
  * )

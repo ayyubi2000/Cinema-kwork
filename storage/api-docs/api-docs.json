@@ -1,10 +1,10 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Virtual muzey",
-        "description": "Documentation for virtual muzey admin dashboard and main site",
+        "title": "kinoage",
+        "description": "Documentation for kinoage admin dashboard and main site",
         "contact": {
-            "email": "s.murodjonov@uzinfocom.uz"
+            "email": "ayubxonnematov@gmail.com"
         },
         "version": "1.0.0"
     },
@@ -28,6 +28,110 @@
                         "name": "password",
                         "in": "query",
                         "description": "insert your password",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation exception"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "register": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "Insert a new User",
+                "description": "Insert a new User",
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "insert your email",
+                        "required": true
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "insert your password",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation exception"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "reset-password": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "resetPassword",
+                "description": "resetPassword",
+                "operationId": "resetPassword",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "insert your email",
+                        "required": true
+                    },
+                    {
+                        "name": "code",
+                        "in": "query",
+                        "description": "insert your code",
                         "required": true
                     }
                 ],
@@ -320,7 +424,7 @@
         "/api/emailverificationcode": {
             "post": {
                 "tags": [
-                    "EmailVerificationCodes"
+                    "login"
                 ],
                 "summary": "Insert a new EmailVerificationCode",
                 "description": "Insert a new EmailVerificationCode",
@@ -366,7 +470,7 @@
         "/api/emailverificationcode/{emailverificationcode_id}": {
             "get": {
                 "tags": [
-                    "EmailVerificationCodes"
+                    "login"
                 ],
                 "summary": "Show a EmailVerificationCode from his Id",
                 "description": "Show a EmailVerificationCode from his Id",

@@ -34,8 +34,7 @@ class ApiAuthService extends BaseService
                 'token' => $this->repository->createToken($data['email']),
                 'user' => $model,
             ]);
-        }
-        else {
+        } else {
             return ApiResponse::error("The provided username or password is incorrect.", Response::HTTP_UNAUTHORIZED);
         }
     }
@@ -46,17 +45,16 @@ class ApiAuthService extends BaseService
 
         if ($emailVerification and Hash::check($data['code'], $emailVerification->code)) {
             $data['password'] = bcrypt($data['password']);
+            $data['roles'] = [['role_code' => 'suspect_user', 'status' => true]];
             $data['email_verified_at'] = date('Y-m-d');
-            $user = parent::createModel($data);
+            $user = $this->repository->create($data);
             $emailVerification->delete();
             return ApiResponse::success([
                 'type' => 'Bearer',
                 'token' => $this->repository->createToken($data['email']),
                 'user' => $user,
             ]);
-        }
-
-        else {
+        } else {
             return ApiResponse::error("The email is not verified , please repeat again ", Response::HTTP_UNAUTHORIZED);
         }
     }
@@ -77,9 +75,7 @@ class ApiAuthService extends BaseService
                 'token' => $this->repository->createToken($data['email']),
                 'user' => $user,
             ]);
-        }
-
-        else {
+        } else {
             return ApiResponse::error("The email is not verified , please repeat again ", Response::HTTP_UNAUTHORIZED);
         }
     }
