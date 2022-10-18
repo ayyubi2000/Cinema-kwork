@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create('regions', function (Blueprint $table) {
             $table->id();
-            $table->json('name');
+            $table->text('name');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();
         });
