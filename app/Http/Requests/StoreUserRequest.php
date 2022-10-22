@@ -14,7 +14,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-//        return Auth::check();
+        //        return Auth::check();
         return true;
     }
 
@@ -26,10 +26,11 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required','string'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required','min:6'],
-            'museum_id' => ['nullable','numeric'],
+            'name' => ['required', 'string'],
+            'birthday' => ['required'],
+            'avatar_url' => ['required'],
+            'password' => ['required', 'min:6'],
+            'email' => ['nullable', 'email'],
             'roles' => ['array', 'required'],
             'roles.*.role_code' => ['required', 'string'],
             'roles.*.status' => ['required', 'boolean']

@@ -83,8 +83,9 @@ class User extends BaseModel
     protected $fillable = [
         'email',
         'name',
-        'surename',
         'password',
+        'avatar_url',
+        'birthday',
         'email_verified_at',
     ];
 
@@ -121,5 +122,18 @@ class User extends BaseModel
         return $this->roles()
             ->where('status', GeneralStatus::STATUS_ACTIVE)
             ->first();
+    }
+
+    public function scopeFilter($query, $data)
+    {
+        if (isset($data['status']))
+            $query->whereHas('roles', function ($q) use ($data) {
+                $q->where('status', $data['status']);
+            });
+        if (isset($data['role']))
+            $query->whereHas('roles', function ($q) use ($data) {
+                $q->where('role_code', $data['role']);
+            });
+        return $query;
     }
 }

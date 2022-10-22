@@ -47,6 +47,6 @@ class crud extends Command
             file_put_contents(str_replace('CrudGenerator', $this->argument('name'), $fileName) . '.php', $content);
         }
 
-        Artisan::call('make:migration create_' . strtolower($this->argument('name')) . '_table');
+        Artisan::call('make:migration create_' . strtolower($this->argument('name')) . 's_table');
     }
 }

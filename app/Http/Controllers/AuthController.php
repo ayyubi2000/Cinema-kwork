@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Throwable;
 use App\Dtos\ApiResponse;
+use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 use App\Services\ApiAuthService;
 use Illuminate\Http\JsonResponse;
@@ -11,6 +12,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\ResetPasswordRequest;
+
 
 class AuthController extends Controller
 {
@@ -172,7 +174,7 @@ class AuthController extends Controller
      *  summary="logout ",
      *  description="account logout",
      *  security={
-     *      {"passport":{}},
+     *      {"sanctum":{}},
      *  },
      *  @OA\Response(response="200",description="User created",
      *     @OA\JsonContent(
@@ -202,7 +204,7 @@ class AuthController extends Controller
      *  summary="account",
      *  description="user account description",
      *  security={
-     *      {"passport":{}},
+     *      {"sanctum":{}},
      *  },
      *  @OA\Response(response="200",description="User created",
      *     @OA\JsonContent(
@@ -221,6 +223,35 @@ class AuthController extends Controller
     {
         $success = Auth()->user();
         return ApiResponse::success($success);
+    }
+    /**
+     * @OA\Get(
+     *  path="update-yourself",
+     *  operationId="updateYourself",
+     *  tags={"login"},
+     *  summary="updateYourself",
+     *  description="user updateYourself description",
+     *  security={
+     *      {"sanctum":{}},
+     *  },
+     *  @OA\Response(response="200",description="User created",
+     *     @OA\JsonContent(
+     *      @OA\Property(
+     *       property="data",
+     *       type="object",
+     *      ),
+     *    ),
+     *  ),
+     *  @OA\Response(response="401",description="Unauthorized"),
+     * )
+     * Display a listing of the resource.
+     *
+     */
+    public function updateYourself(Request $request)
+    {
+        auth()->user()->update($request->all());
+
+        return ApiResponse::success(auth()->user());
     }
 
 }

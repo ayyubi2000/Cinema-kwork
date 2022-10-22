@@ -25,13 +25,14 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['nullable','string'],
-            'email' => ['nullable','email'],
-            'password' => ['nullable','min:6'],
-            'museum_id' => ['nullable','numeric'],
-            'roles' => ['array', 'nullable'],
-            'roles.*.role_code' => ['nullable', 'string'],
-            'roles.*.status' => ['nullable', 'boolean']
+            'name' => ['required', 'string'],
+            'birthday' => ['required'],
+            'avatar_url' => ['required'],
+            'password' => ['required', 'min:6'],
+            'email' => ['nullable', 'numeric'],
+            'roles' => ['array', 'required'],
+            'roles.*.role_code' => ['required', 'string'],
+            'roles.*.status' => ['required', 'boolean']
         ];
     }
 }

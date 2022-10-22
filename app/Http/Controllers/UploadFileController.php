@@ -41,6 +41,6 @@ class UploadFileController extends Controller
         $pathUpload = $request->file('file')->store('files');
         $path = $request->file('file')->move('uploads', $pathUpload);
         unlink(storage_path('app/' . $pathUpload));
-        return response()->json(['location' => (string)$path]);
+        return response()->json(['location' => (string) $path]);
     }
 }

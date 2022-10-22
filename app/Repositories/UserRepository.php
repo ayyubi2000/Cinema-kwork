@@ -47,13 +47,15 @@ class UserRepository extends BaseRepository
         $model = $this->findById($id);
         $model->fill($data);
         $model->save();
-        $model->roles()->delete();
-        foreach ($data['roles'] as $role) {
-            UserRoles::create([
-                'user_id' => $model->id,
-                'role_code' => $role['role_code'],
-                'status' => $role['status'] ?GeneralStatus::STATUS_ACTIVE : GeneralStatus::STATUS_NOT_ACTIVE,
-            ]);
+        if (isset($data['roles'])) {
+            $model->roles()->delete();
+            foreach ($data['roles'] as $role) {
+                UserRoles::create([
+                    'user_id' => $model->id,
+                    'role_code' => $role['role_code'],
+                    'status' => $role['status'] ?GeneralStatus::STATUS_ACTIVE : GeneralStatus::STATUS_NOT_ACTIVE,
+                ]);
+            }
         }
         return $model;
     }
@@ -91,8 +93,7 @@ class UserRepository extends BaseRepository
     {
         if (is_string($email)) {
             $model = $this->findByEmail($email);
-        }
-        else {
+        } else {
             $model = $email;
         }
         return $model->tokens()->delete();
