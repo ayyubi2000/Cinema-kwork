@@ -9,6 +9,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Throwable;
 use App\Constants\UserRole;
 use App\Dtos\ApiResponse;
@@ -42,9 +43,9 @@ class UserController extends Controller
      * @return LengthAwarePaginator
      * @throws Throwable
      */
-    public function index(): LengthAwarePaginator
+    public function index(Request $request): LengthAwarePaginator|collection
     {
-        return $this->service->paginatedList();
+        return $this->service->paginatedList($request->all());
     }
 
     /**

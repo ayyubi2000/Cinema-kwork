@@ -195,7 +195,7 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "sanctum": []
                     }
                 ]
             }
@@ -230,9 +230,416 @@
                 },
                 "security": [
                     {
-                        "passport": []
+                        "sanctum": []
                     }
                 ]
+            }
+        },
+        "update-yourself": {
+            "get": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "updateYourself",
+                "description": "user updateYourself description",
+                "operationId": "updateYourself",
+                "responses": {
+                    "200": {
+                        "description": "User created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/category": {
+            "get": {
+                "tags": [
+                    "Categorys"
+                ],
+                "summary": "Get list of Category",
+                "description": "Returns list of Category",
+                "operationId": "indexCategory",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Categorys"
+                ],
+                "summary": "Insert a new Category",
+                "description": "Insert a new Category",
+                "operationId": "storeCategory",
+                "requestBody": {
+                    "description": "Category to create",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "$ref": "#/components/schemas/Category"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Category created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Category"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation exception"
+                    }
+                }
+            }
+        },
+        "/api/category/{category_id}": {
+            "get": {
+                "tags": [
+                    "Categorys"
+                ],
+                "summary": "Show a Category from his Id",
+                "description": "Show a Category from his Id",
+                "operationId": "showCategory",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Category--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Category"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Category not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Categorys"
+                ],
+                "summary": "Delete a Category",
+                "description": "Delete a Category",
+                "operationId": "destroyCategory",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Category--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Category"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Category not found"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Categorys"
+                ],
+                "summary": "Update an existing Category",
+                "description": "Update an existing Category",
+                "operationId": "updateCategory",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Category--id"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Category to update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "$ref": "#/components/schemas/Category"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Category"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Category not found"
+                    }
+                }
+            }
+        },
+        "/api/country": {
+            "get": {
+                "tags": [
+                    "Countrys"
+                ],
+                "summary": "Get list of Country",
+                "description": "Returns list of Country",
+                "operationId": "indexCountry",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Country"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Countrys"
+                ],
+                "summary": "Insert a new Country",
+                "description": "Insert a new Country",
+                "operationId": "storeCountry",
+                "requestBody": {
+                    "description": "Country to create",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "$ref": "#/components/schemas/Country"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Country created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Country"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation exception"
+                    }
+                }
+            }
+        },
+        "/api/country/{country_id}": {
+            "get": {
+                "tags": [
+                    "Countrys"
+                ],
+                "summary": "Show a Country from his Id",
+                "description": "Show a Country from his Id",
+                "operationId": "showCountry",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Country--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Country"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Country not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Countrys"
+                ],
+                "summary": "Delete a Country",
+                "description": "Delete a Country",
+                "operationId": "destroyCountry",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Country--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Country"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Country not found"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Countrys"
+                ],
+                "summary": "Update an existing Country",
+                "description": "Update an existing Country",
+                "operationId": "updateCountry",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Country--id"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Country to update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "$ref": "#/components/schemas/Country"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Country"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Country not found"
+                    }
+                }
             }
         },
         "/api/crudgenerators": {
@@ -502,21 +909,21 @@
                 }
             }
         },
-        "/api/region": {
+        "/api/genre": {
             "get": {
                 "tags": [
-                    "Regions"
+                    "Genres"
                 ],
-                "summary": "Get list of Region",
-                "description": "Returns list of Region",
-                "operationId": "indexRegion",
+                "summary": "Get list of Genre",
+                "description": "Returns list of Genre",
+                "operationId": "indexGenre",
                 "responses": {
                     "200": {
                         "description": "Successful operation",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Regions"
+                                    "$ref": "#/components/schemas/Genre"
                                 }
                             }
                         }
@@ -525,20 +932,20 @@
             },
             "post": {
                 "tags": [
-                    "Regions"
+                    "Genres"
                 ],
-                "summary": "Insert a new Region",
-                "description": "Insert a new Region",
-                "operationId": "storeRegion",
+                "summary": "Insert a new Genre",
+                "description": "Insert a new Genre",
+                "operationId": "storeGenre",
                 "requestBody": {
-                    "description": "Region to create",
+                    "description": "Genre to create",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "properties": {
                                     "data": {
-                                        "$ref": "#/components/schemas/Region"
+                                        "$ref": "#/components/schemas/Genre"
                                     }
                                 },
                                 "type": "object"
@@ -548,13 +955,13 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Region created",
+                        "description": "Genre created",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/Region"
+                                            "$ref": "#/components/schemas/Genre"
                                         }
                                     },
                                     "type": "object"
@@ -568,17 +975,17 @@
                 }
             }
         },
-        "/api/region/{region_id}": {
+        "/api/genre/{genre_id}": {
             "get": {
                 "tags": [
-                    "Regions"
+                    "Genres"
                 ],
-                "summary": "Show a Region from his Id",
-                "description": "Show a Region from his Id",
-                "operationId": "showRegion",
+                "summary": "Show a Genre from his Id",
+                "description": "Show a Genre from his Id",
+                "operationId": "showGenre",
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Region--id"
+                        "$ref": "#/components/parameters/Genre--id"
                     }
                 ],
                 "responses": {
@@ -589,7 +996,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/Region"
+                                            "$ref": "#/components/schemas/Genre"
                                         }
                                     },
                                     "type": "object"
@@ -598,20 +1005,20 @@
                         }
                     },
                     "404": {
-                        "description": "Region not found"
+                        "description": "Genre not found"
                     }
                 }
             },
             "delete": {
                 "tags": [
-                    "Regions"
+                    "Genres"
                 ],
-                "summary": "Delete a Region",
-                "description": "Delete a Region",
-                "operationId": "destroyRegion",
+                "summary": "Delete a Genre",
+                "description": "Delete a Genre",
+                "operationId": "destroyGenre",
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Region--id"
+                        "$ref": "#/components/parameters/Genre--id"
                     }
                 ],
                 "responses": {
@@ -622,7 +1029,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/Region"
+                                            "$ref": "#/components/schemas/Genre"
                                         }
                                     },
                                     "type": "object"
@@ -634,31 +1041,31 @@
                         "description": "No content"
                     },
                     "404": {
-                        "description": "Region not found"
+                        "description": "Genre not found"
                     }
                 }
             },
             "patch": {
                 "tags": [
-                    "Regions"
+                    "Genres"
                 ],
-                "summary": "Update an existing Region",
-                "description": "Update an existing Region",
-                "operationId": "updateRegion",
+                "summary": "Update an existing Genre",
+                "description": "Update an existing Genre",
+                "operationId": "updateGenre",
                 "parameters": [
                     {
-                        "$ref": "#/components/parameters/Region--id"
+                        "$ref": "#/components/parameters/Genre--id"
                     }
                 ],
                 "requestBody": {
-                    "description": "Region to update",
+                    "description": "Genre to update",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "properties": {
                                     "data": {
-                                        "$ref": "#/components/schemas/Region"
+                                        "$ref": "#/components/schemas/Genre"
                                     }
                                 },
                                 "type": "object"
@@ -674,7 +1081,7 @@
                                 "schema": {
                                     "properties": {
                                         "data": {
-                                            "$ref": "#/components/schemas/Region"
+                                            "$ref": "#/components/schemas/Genre"
                                         }
                                     },
                                     "type": "object"
@@ -683,7 +1090,565 @@
                         }
                     },
                     "404": {
-                        "description": "Region not found"
+                        "description": "Genre not found"
+                    }
+                }
+            }
+        },
+        "/api/movie": {
+            "get": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Get list of Movie",
+                "description": "Returns list of Movie",
+                "operationId": "indexMovie",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Movie"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Insert a new Movie",
+                "description": "Insert a new Movie",
+                "operationId": "storeMovie",
+                "requestBody": {
+                    "description": "Movie to create",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "$ref": "#/components/schemas/Movie"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Movie created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Movie"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation exception"
+                    }
+                }
+            }
+        },
+        "/api/movie/{movie_id}": {
+            "get": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Show a Movie from his Id",
+                "description": "Show a Movie from his Id",
+                "operationId": "showMovie",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Movie--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Movie"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Delete a Movie",
+                "description": "Delete a Movie",
+                "operationId": "destroyMovie",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Movie--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Movie"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Update an existing Movie",
+                "description": "Update an existing Movie",
+                "operationId": "updateMovie",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Movie--id"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Movie to update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "$ref": "#/components/schemas/Movie"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Movie"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Movie not found"
+                    }
+                }
+            }
+        },
+        "/api/studio": {
+            "get": {
+                "tags": [
+                    "Studio"
+                ],
+                "summary": "Get list of Studio",
+                "description": "Returns list of Studio",
+                "operationId": "indexStudio",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Studio"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Studio"
+                ],
+                "summary": "Insert a new Studio",
+                "description": "Insert a new Studio",
+                "operationId": "storeStudio",
+                "requestBody": {
+                    "description": "Studio to create",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "$ref": "#/components/schemas/Studio"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Studio created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Studio"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation exception"
+                    }
+                }
+            }
+        },
+        "/api/studio/{studio_id}": {
+            "get": {
+                "tags": [
+                    "Studio"
+                ],
+                "summary": "Show a Studio from his Id",
+                "description": "Show a Studio from his Id",
+                "operationId": "showStudio",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Studio--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Studio"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Studio not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Studio"
+                ],
+                "summary": "Delete a Studio",
+                "description": "Delete a Studio",
+                "operationId": "destroyStudio",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Studio--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Studio"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "Studio not found"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Studio"
+                ],
+                "summary": "Update an existing Studio",
+                "description": "Update an existing Studio",
+                "operationId": "updateStudio",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Studio--id"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Studio to update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "$ref": "#/components/schemas/Studio"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/Studio"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Studio not found"
+                    }
+                }
+            }
+        },
+        "/api/studio-news": {
+            "get": {
+                "tags": [
+                    "StudioNews"
+                ],
+                "summary": "Get list of StudioNews",
+                "description": "Returns list of StudioNews",
+                "operationId": "indexStudioNews",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StudioNews"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "StudioNews"
+                ],
+                "summary": "Insert a new StudioNews",
+                "description": "Insert a new StudioNews",
+                "operationId": "storeStudioNews",
+                "requestBody": {
+                    "description": "StudioNews to create",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "$ref": "#/components/schemas/StudioNews"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "StudioNews created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/StudioNews"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation exception"
+                    }
+                }
+            }
+        },
+        "/api/studio-news/{studionews_id}": {
+            "get": {
+                "tags": [
+                    "StudioNews"
+                ],
+                "summary": "Show a StudioNews from his Id",
+                "description": "Show a StudioNews from his Id",
+                "operationId": "showStudioNews",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/StudioNews--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/StudioNews"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "StudioNews not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "StudioNews"
+                ],
+                "summary": "Delete a StudioNews",
+                "description": "Delete a StudioNews",
+                "operationId": "destroyStudioNews",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/StudioNews--id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/StudioNews"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "204": {
+                        "description": "No content"
+                    },
+                    "404": {
+                        "description": "StudioNews not found"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "StudioNews"
+                ],
+                "summary": "Update an existing StudioNews",
+                "description": "Update an existing StudioNews",
+                "operationId": "updateStudioNews",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/StudioNews--id"
+                    }
+                ],
+                "requestBody": {
+                    "description": "StudioNews to update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "data": {
+                                        "$ref": "#/components/schemas/StudioNews"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/StudioNews"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "StudioNews not found"
                     }
                 }
             }
@@ -932,6 +1897,270 @@
     },
     "components": {
         "schemas": {
+            "Category": {
+                "title": "Category",
+                "description": "Category model",
+                "required": [],
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of Category",
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "name of Category",
+                        "type": "string",
+                        "example": "Macbook Pro"
+                    },
+                    "sku": {
+                        "title": "sku",
+                        "description": "sku of Category",
+                        "type": "string",
+                        "example": "MCBPRO2022"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "price of Category",
+                        "type": "integer",
+                        "example": "99"
+                    },
+                    "created_at": {
+                        "title": "created_at",
+                        "type": "dateTime",
+                        "readOnly": "true",
+                        "example": "2022-07-04T02:41:42.336Z"
+                    },
+                    "updated_at": {
+                        "title": "updated_at",
+                        "type": "dateTime",
+                        "readOnly": "true",
+                        "example": "2022-07-04T02:41:42.336Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Categorys": {
+                "title": "Categorys list",
+                "properties": {
+                    "data": {
+                        "title": "data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Category"
+                        }
+                    },
+                    "first_page_url": {
+                        "title": "first_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=1"
+                    },
+                    "last_page_url": {
+                        "title": "last_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=3"
+                    },
+                    "prev_page_url": {
+                        "title": "prev_page_url",
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "next_page_url": {
+                        "title": "next_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=2"
+                    },
+                    "current_page": {
+                        "title": "current_page",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "from": {
+                        "title": "from",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "last_page": {
+                        "title": "last_page",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "path": {
+                        "title": "path",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers"
+                    },
+                    "per_page": {
+                        "title": "per_page",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "total": {
+                        "title": "total",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "links": {
+                        "title": "links",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "url": {
+                                    "title": "url",
+                                    "type": "string",
+                                    "example": "http://localhost:8080/api/merchant-customers?page=2"
+                                },
+                                "label": {
+                                    "title": "label",
+                                    "type": "string",
+                                    "example": "1"
+                                },
+                                "active": {
+                                    "title": "active",
+                                    "type": "boolean",
+                                    "example": "true"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Country": {
+                "title": "Country",
+                "description": "Country model",
+                "required": [],
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of Country",
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "name of Country",
+                        "type": "string",
+                        "example": "Macbook Pro"
+                    },
+                    "sku": {
+                        "title": "sku",
+                        "description": "sku of Country",
+                        "type": "string",
+                        "example": "MCBPRO2022"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "price of Country",
+                        "type": "integer",
+                        "example": "99"
+                    },
+                    "created_at": {
+                        "title": "created_at",
+                        "type": "dateTime",
+                        "readOnly": "true",
+                        "example": "2022-07-04T02:41:42.336Z"
+                    },
+                    "updated_at": {
+                        "title": "updated_at",
+                        "type": "dateTime",
+                        "readOnly": "true",
+                        "example": "2022-07-04T02:41:42.336Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Countrys": {
+                "title": "Countrys list",
+                "properties": {
+                    "data": {
+                        "title": "data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Country"
+                        }
+                    },
+                    "first_page_url": {
+                        "title": "first_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=1"
+                    },
+                    "last_page_url": {
+                        "title": "last_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=3"
+                    },
+                    "prev_page_url": {
+                        "title": "prev_page_url",
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "next_page_url": {
+                        "title": "next_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=2"
+                    },
+                    "current_page": {
+                        "title": "current_page",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "from": {
+                        "title": "from",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "last_page": {
+                        "title": "last_page",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "path": {
+                        "title": "path",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers"
+                    },
+                    "per_page": {
+                        "title": "per_page",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "total": {
+                        "title": "total",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "links": {
+                        "title": "links",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "url": {
+                                    "title": "url",
+                                    "type": "string",
+                                    "example": "http://localhost:8080/api/merchant-customers?page=2"
+                                },
+                                "label": {
+                                    "title": "label",
+                                    "type": "string",
+                                    "example": "1"
+                                },
+                                "active": {
+                                    "title": "active",
+                                    "type": "boolean",
+                                    "example": "true"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
             "CrudGenerator": {
                 "title": "CrudGenerator",
                 "description": "CrudGenerator model",
@@ -1196,35 +2425,455 @@
                 },
                 "type": "object"
             },
-            "Region": {
-                "title": "Region",
-                "description": "Region model",
+            "Genre": {
+                "title": "Genre",
+                "description": "Genre model",
                 "required": [],
                 "properties": {
                     "id": {
                         "title": "id",
-                        "description": "id of Region",
+                        "description": "id of Genre",
                         "type": "integer",
                         "readOnly": "true",
                         "example": "1"
                     },
                     "name": {
                         "title": "name",
-                        "description": "name of Region",
+                        "description": "name of Genre",
                         "type": "string",
                         "example": "Macbook Pro"
+                    },
+                    "sku": {
+                        "title": "sku",
+                        "description": "sku of Genre",
+                        "type": "string",
+                        "example": "MCBPRO2022"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "price of Genre",
+                        "type": "integer",
+                        "example": "99"
+                    },
+                    "created_at": {
+                        "title": "created_at",
+                        "type": "dateTime",
+                        "readOnly": "true",
+                        "example": "2022-07-04T02:41:42.336Z"
+                    },
+                    "updated_at": {
+                        "title": "updated_at",
+                        "type": "dateTime",
+                        "readOnly": "true",
+                        "example": "2022-07-04T02:41:42.336Z"
                     }
                 },
                 "type": "object"
             },
-            "Regions": {
-                "title": "Regions list",
+            "Genres": {
+                "title": "Genres list",
                 "properties": {
                     "data": {
                         "title": "data",
                         "type": "array",
                         "items": {
-                            "$ref": "#/components/schemas/Region"
+                            "$ref": "#/components/schemas/Genre"
+                        }
+                    },
+                    "first_page_url": {
+                        "title": "first_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=1"
+                    },
+                    "last_page_url": {
+                        "title": "last_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=3"
+                    },
+                    "prev_page_url": {
+                        "title": "prev_page_url",
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "next_page_url": {
+                        "title": "next_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=2"
+                    },
+                    "current_page": {
+                        "title": "current_page",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "from": {
+                        "title": "from",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "last_page": {
+                        "title": "last_page",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "path": {
+                        "title": "path",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers"
+                    },
+                    "per_page": {
+                        "title": "per_page",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "total": {
+                        "title": "total",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "links": {
+                        "title": "links",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "url": {
+                                    "title": "url",
+                                    "type": "string",
+                                    "example": "http://localhost:8080/api/merchant-customers?page=2"
+                                },
+                                "label": {
+                                    "title": "label",
+                                    "type": "string",
+                                    "example": "1"
+                                },
+                                "active": {
+                                    "title": "active",
+                                    "type": "boolean",
+                                    "example": "true"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Movie": {
+                "title": "Movie",
+                "description": "Movie model",
+                "required": [],
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of Movie",
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "name of Movie",
+                        "type": "string",
+                        "example": "Macbook Pro"
+                    },
+                    "sku": {
+                        "title": "sku",
+                        "description": "sku of Movie",
+                        "type": "string",
+                        "example": "MCBPRO2022"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "price of Movie",
+                        "type": "integer",
+                        "example": "99"
+                    },
+                    "created_at": {
+                        "title": "created_at",
+                        "type": "dateTime",
+                        "readOnly": "true",
+                        "example": "2022-07-04T02:41:42.336Z"
+                    },
+                    "updated_at": {
+                        "title": "updated_at",
+                        "type": "dateTime",
+                        "readOnly": "true",
+                        "example": "2022-07-04T02:41:42.336Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Movies": {
+                "title": "Movies list",
+                "properties": {
+                    "data": {
+                        "title": "data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Movie"
+                        }
+                    },
+                    "first_page_url": {
+                        "title": "first_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=1"
+                    },
+                    "last_page_url": {
+                        "title": "last_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=3"
+                    },
+                    "prev_page_url": {
+                        "title": "prev_page_url",
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "next_page_url": {
+                        "title": "next_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=2"
+                    },
+                    "current_page": {
+                        "title": "current_page",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "from": {
+                        "title": "from",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "last_page": {
+                        "title": "last_page",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "path": {
+                        "title": "path",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers"
+                    },
+                    "per_page": {
+                        "title": "per_page",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "total": {
+                        "title": "total",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "links": {
+                        "title": "links",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "url": {
+                                    "title": "url",
+                                    "type": "string",
+                                    "example": "http://localhost:8080/api/merchant-customers?page=2"
+                                },
+                                "label": {
+                                    "title": "label",
+                                    "type": "string",
+                                    "example": "1"
+                                },
+                                "active": {
+                                    "title": "active",
+                                    "type": "boolean",
+                                    "example": "true"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Studio": {
+                "title": "Studio",
+                "description": "Studio model",
+                "required": [],
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of Studio",
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "name of Studio",
+                        "type": "string",
+                        "example": "Macbook Pro"
+                    },
+                    "sku": {
+                        "title": "sku",
+                        "description": "sku of Studio",
+                        "type": "string",
+                        "example": "MCBPRO2022"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "price of Studio",
+                        "type": "integer",
+                        "example": "99"
+                    },
+                    "created_at": {
+                        "title": "created_at",
+                        "type": "dateTime",
+                        "readOnly": "true",
+                        "example": "2022-07-04T02:41:42.336Z"
+                    },
+                    "updated_at": {
+                        "title": "updated_at",
+                        "type": "dateTime",
+                        "readOnly": "true",
+                        "example": "2022-07-04T02:41:42.336Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Studios": {
+                "title": "Studios list",
+                "properties": {
+                    "data": {
+                        "title": "data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Studio"
+                        }
+                    },
+                    "first_page_url": {
+                        "title": "first_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=1"
+                    },
+                    "last_page_url": {
+                        "title": "last_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=3"
+                    },
+                    "prev_page_url": {
+                        "title": "prev_page_url",
+                        "type": "string",
+                        "example": "null"
+                    },
+                    "next_page_url": {
+                        "title": "next_page_url",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers?page=2"
+                    },
+                    "current_page": {
+                        "title": "current_page",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "from": {
+                        "title": "from",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "last_page": {
+                        "title": "last_page",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "path": {
+                        "title": "path",
+                        "type": "string",
+                        "example": "http://localhost:8080/api/merchant-customers"
+                    },
+                    "per_page": {
+                        "title": "per_page",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "total": {
+                        "title": "total",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "links": {
+                        "title": "links",
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "url": {
+                                    "title": "url",
+                                    "type": "string",
+                                    "example": "http://localhost:8080/api/merchant-customers?page=2"
+                                },
+                                "label": {
+                                    "title": "label",
+                                    "type": "string",
+                                    "example": "1"
+                                },
+                                "active": {
+                                    "title": "active",
+                                    "type": "boolean",
+                                    "example": "true"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "StudioNew": {
+                "title": "StudioNews",
+                "description": "StudioNews model",
+                "required": [],
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id of StudioNews",
+                        "type": "integer",
+                        "readOnly": "true",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "name of StudioNews",
+                        "type": "string",
+                        "example": "Macbook Pro"
+                    },
+                    "sku": {
+                        "title": "sku",
+                        "description": "sku of StudioNews",
+                        "type": "string",
+                        "example": "MCBPRO2022"
+                    },
+                    "price": {
+                        "title": "price",
+                        "description": "price of StudioNews",
+                        "type": "integer",
+                        "example": "99"
+                    },
+                    "created_at": {
+                        "title": "created_at",
+                        "type": "dateTime",
+                        "readOnly": "true",
+                        "example": "2022-07-04T02:41:42.336Z"
+                    },
+                    "updated_at": {
+                        "title": "updated_at",
+                        "type": "dateTime",
+                        "readOnly": "true",
+                        "example": "2022-07-04T02:41:42.336Z"
+                    }
+                },
+                "type": "object"
+            },
+            "StudioNews": {
+                "title": "StudioNewss list",
+                "properties": {
+                    "data": {
+                        "title": "data",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/StudioNews"
                         }
                     },
                     "first_page_url": {
@@ -1537,6 +3186,26 @@
             }
         },
         "parameters": {
+            "Category--id": {
+                "name": "Category_id",
+                "in": "path",
+                "description": "Id of Category",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "example": "1"
+                }
+            },
+            "Country--id": {
+                "name": "Country_id",
+                "in": "path",
+                "description": "Id of Country",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "example": "1"
+                }
+            },
             "CrudGenerator--id": {
                 "name": "CrudGenerator_id",
                 "in": "path",
@@ -1557,10 +3226,40 @@
                     "example": "1"
                 }
             },
-            "Region--id": {
-                "name": "Region_id",
+            "Genre--id": {
+                "name": "Genre_id",
                 "in": "path",
-                "description": "Id of Region",
+                "description": "Id of Genre",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "example": "1"
+                }
+            },
+            "Movie--id": {
+                "name": "Movie_id",
+                "in": "path",
+                "description": "Id of Movie",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "example": "1"
+                }
+            },
+            "Studio--id": {
+                "name": "Studio_id",
+                "in": "path",
+                "description": "Id of Studio",
+                "required": true,
+                "schema": {
+                    "type": "integer",
+                    "example": "1"
+                }
+            },
+            "StudioNews--id": {
+                "name": "StudioNews_id",
+                "in": "path",
+                "description": "Id of StudioNews",
                 "required": true,
                 "schema": {
                     "type": "integer",
@@ -1586,6 +3285,14 @@
                     "type": "integer",
                     "example": "1"
                 }
+            }
+        },
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
             }
         }
     }

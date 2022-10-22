@@ -20,12 +20,13 @@ class BaseService implements IBaseService
      * @return LengthAwarePaginator
      * @throws Throwable
      */
-    public function paginatedList($data = [],$all=false): LengthAwarePaginator|Collection
+    public function paginatedList($data = []): LengthAwarePaginator|Collection
     {
-        if($all) return $this->repository->getAllList($data);
+        if (isset($data['all']))
+            return $this->repository->getAllList($data);
         return $this->repository->paginatedList($data);
     }
- 
+
 
 
 
@@ -34,7 +35,7 @@ class BaseService implements IBaseService
      * @return Model|Model[]|Builder|Builder[]|Collection|null
      * @throws Throwable
      */
-    public function createModel($data): array|Collection|Builder|Model|null
+    public function createModel($data): array |Collection|Builder|Model|null
     {
         return $this->getRepository()->create($data);
     }
@@ -55,7 +56,7 @@ class BaseService implements IBaseService
      * @return Model|Model[]|Builder|Builder[]|Collection|null
      * @throws Throwable
      */
-    public function updateModel($data, $id): array|Collection|Builder|Model|null
+    public function updateModel($data, $id): array |Collection|Builder|Model|null
     {
         return $this->getRepository()->update($data, $id);
     }
@@ -65,7 +66,7 @@ class BaseService implements IBaseService
      * @return array|Builder|Builder[]|Collection|Model|Model[]
      * @throws Throwable
      */
-    public function deleteModel($id): array|Builder|Collection|Model
+    public function deleteModel($id): array |Builder|Collection|Model
     {
         return $this->getRepository()->delete($id);
     }
@@ -75,8 +76,8 @@ class BaseService implements IBaseService
      * @return Model|Model[]|Builder|Builder[]|Collection|null
      * @throws Throwable
      */
-    public function getModelById($id): Model|array|Collection|Builder|null
+    public function getModelById($id, $relations = []): Model|array |Collection|Builder|null
     {
-        return $this->getRepository()->findById($id);
+        return $this->getRepository()->findById($id, $relations);
     }
 }

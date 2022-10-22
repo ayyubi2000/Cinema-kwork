@@ -27,10 +27,14 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'surename' => ['required', 'string'],
             'code' => ['required', 'numeric'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:5'],
+            'birthday' => ['required'],
+            'country_id' => ['required'],
+            'avatar_url' => ['required'],
+            'chanel_description' => ['nullable'],
+            'status' => ['nullable'],
         ];
     }
 }
