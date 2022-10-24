@@ -2,6 +2,7 @@
 use App\Http\Controllers\AwardsPhotoController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieNewController;
+use App\Http\Controllers\MovieNewsComentaryController;
 use App\Http\Controllers\SerieController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\EmailVerificationCodeController;
 
 
 Route::post('login', [AuthController::class, 'login']);
+Route::get('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('reset-password', [AuthController::class, 'resetPassword']);
 Route::post('email-verification', [EmailVerificationCodeController::class, 'sendEmailVerification']);
@@ -32,6 +34,7 @@ Route::middleware(['auth:sanctum', 'auth.permission'])->group(function () {
     Route::apiResource('awards-photos', AwardsPhotoController::class);
     Route::apiResource('serie', SerieController::class);
     Route::apiResource('movie-new', MovieNewController::class);
+    Route::apiResource('movie-new-comentary', MovieNewsComentaryController::class);
     Route::get('logout', [AuthController::class, 'logout'])->name('user.logout');
     Route::post('update-yourself', [AuthController::class, 'updateYourself'])->name('user.updateYourself');
     Route::get('check-user-token', [AuthController::class, 'checkUserToken'])->name('user.checkUserToken');

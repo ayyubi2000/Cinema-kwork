@@ -77,6 +77,13 @@ return [
         ],
         'upload-file' => [
             'index',
+        ],
+        'movie-new-comentary' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
         ]
     ],
     'editor' => [

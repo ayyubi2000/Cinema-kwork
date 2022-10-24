@@ -29,7 +29,7 @@ class UpdateUserRequest extends FormRequest
             'birthday' => ['required'],
             'avatar_url' => ['required'],
             'password' => ['required', 'min:6'],
-            'email' => ['nullable', 'numeric'],
+            'email' => ['nullable', 'email'],
             'roles' => ['array', 'required'],
             'roles.*.role_code' => ['required', 'string'],
             'roles.*.status' => ['required', 'boolean']
