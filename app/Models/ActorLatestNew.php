@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ActorLatesNew extends Model
+class ActorLatestNew extends Model
 {
     use HasFactory;
 }
