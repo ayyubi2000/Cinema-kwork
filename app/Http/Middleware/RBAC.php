@@ -27,8 +27,7 @@ class RBAC
         $user = auth()->user();
         if (empty($user)) {
             $userActiveRole = 'guest';
-        }
-        else {
+        } else {
             $userActiveRole = !empty($user->getActiveRole()) ? $user->getActiveRole()->role_code : 'guest';
         }
         $rbac = config('rbac.' . $userActiveRole);

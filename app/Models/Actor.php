@@ -2,36 +2,33 @@
 
 namespace App\Models;
 
-use App\Models\Actor;
 use App\Models\Genre;
-use App\Models\Rating;
-use App\Models\Studio;
-use App\Models\Country;
-use App\Models\Category;
-use App\Models\MovieNew;
-use App\Models\LatestNew;
+use App\Models\ActorNew;
+use App\Models\Profession;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @OA\Schema(
- *   description="Movie model",
- *   title="Movie",
+ *   description="Actor model",
+ *   title="Actor",
  *   required={},
- *   @OA\Property(type="integer",description="id of Movie",title="id",property="id",example="1",readOnly="true"),
- *   @OA\Property(type="string",description="name of Movie",title="name",property="name",example="Macbook Pro"),
- *   @OA\Property(type="string",description="sku of Movie",title="sku",property="sku",example="MCBPRO2022"),
- *   @OA\Property(type="integer",description="price of Movie",title="price",property="price",example="99"),
+ *   @OA\Property(type="integer",description="id of Actor",title="id",property="id",example="1",readOnly="true"),
+ *   @OA\Property(type="string",description="name of Actor",title="name",property="name",example="Macbook Pro"),
+ *   @OA\Property(type="string",description="sku of Actor",title="sku",property="sku",example="MCBPRO2022"),
+ *   @OA\Property(type="integer",description="price of Actor",title="price",property="price",example="99"),
  *   @OA\Property(type="dateTime",title="created_at",property="created_at",example="2022-07-04T02:41:42.336Z",readOnly="true"),
  *   @OA\Property(type="dateTime",title="updated_at",property="updated_at",example="2022-07-04T02:41:42.336Z",readOnly="true"),
  * )
  *
  *
  *
+ *
+ *
  * @OA\Schema (
- *   schema="Movies",
- *   title="Movies list",
+ *   schema="Actors",
+ *   title="Actors list",
  *   @OA\Property(title="data",property="data",type="array",
- *     @OA\Items(type="object",ref="#/components/schemas/Movie"),
+ *     @OA\Items(type="object",ref="#/components/schemas/Actor"),
  *   ),
  *   @OA\Property(type="string", title="first_page_url",property="first_page_url",example="http://localhost:8080/api/merchant-customers?page=1"),
  *   @OA\Property(type="string", title="last_page_url",property="last_page_url",example="http://localhost:8080/api/merchant-customers?page=3"),
@@ -53,76 +50,41 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * )
  *
  * @OA\Parameter(
- *      parameter="Movie--id",
+ *      parameter="Actor--id",
  *      in="path",
- *      name="Movie_id",
+ *      name="Actor_id",
  *      required=true,
- *      description="Id of Movie",
+ *      description="Id of Actor",
  *      @OA\Schema(
  *          type="integer",
  *          example="1",
  *      )
  * ),
  */
-class Movie extends BaseModel
+class Actor extends BaseModel
 {
     use HasFactory;
 
-    protected $with = ['studios', 'genres', 'actors'];
-    protected $guarded = ['studio_id', 'genre_id', 'actor_id'];
-    public array $translatable = ['title', 'world_premiere'];
-    protected $casts = [];
+    public array $translatable = ['fact'];
 
-    protected $appends = [
-        'ratingCalculator'
-    ];
+    protected $casts = ['carrera' => 'array'];
 
-    function getAverageRatingAttribute()
-    {
-        return round($this->rating()->avg('ratings'), 1);
-    }
-    public function country()
-    {
-        return $this->belongsTo(Country::class);
-    }
+    protected $with = ['genres', 'professions'];
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function studios()
-    {
-        return $this->belongsToMany(Studio::class)->without(['studio_news', 'country', 'genres']);
-    }
+    protected $guarded = ['genre_id', 'profession_id'];
 
     public function genres()
     {
         return $this->belongsToMany(Genre::class);
     }
 
-    public function actors()
+    public function professions()
     {
-        return $this->belongsToMany(Actor::class);
-    }
-
-    public function rating()
-    {
-        return $this->hasMany(Rating::class);
-    }
-
-
-
-    public function getRatingCalculatorAttribute()
-    {
-        $value = $this->rating()->sum('value');
-        $count = $this->rating()->count('id');
-        return $count != 0 ? $value / $count : 0;
+        return $this->belongsToMany(Profession::class);
     }
 
     public function latestNews()
     {
         return $this->belongsToMany(LatestNew::class);
     }
-
 }

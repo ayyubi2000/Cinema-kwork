@@ -32,7 +32,7 @@ class BaseRepository implements IBaseRepository
         /** @var BaseModel $class */
         $query = $this->getBaseModel()->query();
 
-        if (!is_null(auth()->user()) && auth()->user()->museum_id  && method_exists($this->getBaseModel(), 'scopeRole'))
+        if (!is_null(auth()->user()) && auth()->user()->museum_id && method_exists($this->getBaseModel(), 'scopeRole'))
             $query->role(auth()->user());
 
         return $query->orderByDesc('id');
@@ -50,7 +50,7 @@ class BaseRepository implements IBaseRepository
     /**
      * @throws Throwable
      */
-    public function paginatedList($data = [], array|string $with = null): LengthAwarePaginator
+    public function paginatedList($data = [], array |string $with = null): LengthAwarePaginator
     {
         $query = $this->query();
         if (method_exists($this->getBaseModel(), 'scopeFilter'))
@@ -58,11 +58,11 @@ class BaseRepository implements IBaseRepository
 
         if (!is_null($with))
             $query->with($with);
-       
+
         return $query->paginate(Pagination::PerPage);
     }
-    
-    public function getAllList($data = [], array|string $with = null): Collection
+
+    public function getAllList($data = [], array |string $with = null): Collection
     {
         $query = $this->query();
         if (method_exists($this->getBaseModel(), 'scopeFilter'))
@@ -79,21 +79,21 @@ class BaseRepository implements IBaseRepository
      * @return BaseModel|BaseModel[]|Builder|Builder[]|Collection|null
      * @throws Throwable
      */
-    public function create($data): array|Collection|Builder|BaseModel|null
+    public function create($data): array |Collection|Builder|BaseModel|null
     {
         $model = $this->getBaseModel();
         foreach ($data as $item => $value) {
             if (!in_array($item, $model->translatable)) {
-                $model->{$item} = $value;
+                $model->{ $item} = $value;
                 continue;
             }
             if (is_array($value)) {
                 foreach ($value as $name => $itemValue) {
                     app()->setLocale($name);
-                    $model->{$item} = $itemValue;
+                    $model->{ $item} = $itemValue;
                 }
             } else {
-                $model->{$item} = $value;
+                $model->{ $item} = $value;
             }
         }
         $model->save();
@@ -106,21 +106,21 @@ class BaseRepository implements IBaseRepository
      * @return BaseModel|BaseModel[]|Builder|Builder[]|Collection|null
      * @throws Throwable
      */
-    public function update($data, $id): BaseModel|array|Collection|Builder|null
+    public function update($data, $id): BaseModel|array |Collection|Builder|null
     {
         $model = $this->findById($id);
         foreach ($data as $item => $value) {
             if (!in_array($item, $model->translatable)) {
-                $model->{$item} = $value;
+                $model->{ $item} = $value;
                 continue;
             }
             if (is_array($value)) {
                 foreach ($value as $name => $itemValue) {
                     app()->setLocale($name);
-                    $model->{$item} = $itemValue;
+                    $model->{ $item} = $itemValue;
                 }
             } else {
-                $model->{$item} = $value;
+                $model->{ $item} = $value;
             }
         }
         $model->save();
@@ -132,9 +132,10 @@ class BaseRepository implements IBaseRepository
      * @return BaseModel|BaseModel[]|Builder|Builder[]|Collection|null
      * @throws Throwable
      */
-    public function findById($id, $relations = []): BaseModel|array|Collection|Builder|null
+    public function findById($id, $relations = []): BaseModel|array |Collection|Builder|null
     {
-        if (!empty($relations)) return $this->query()->with($relations)->findOrFail($id);
+        if (!empty($relations))
+            return $this->query()->with($relations)->findOrFail($id);
         return $this->query()->findOrFail($id);
     }
 
@@ -143,7 +144,7 @@ class BaseRepository implements IBaseRepository
      * @return array|Builder|Builder[]|Collection|BaseModel|BaseModel[]
      * @throws Throwable
      */
-    public function delete($id): array|Builder|Collection|BaseModel
+    public function delete($id): array |Builder|Collection|BaseModel
     {
         $model = $this->findById($id);
         $model->delete();

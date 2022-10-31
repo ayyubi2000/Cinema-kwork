@@ -26,7 +26,12 @@ class MovieRepository extends BaseRepository
         }
         if (isset($data['genre_id'])) {
             foreach ($data['genre_id'] as $genre) {
-                $model->genres()->sync(['genre_id' => $genre]);
+                $model->genres()->attach(['genre_id' => $genre]);
+            }
+        }
+        if (isset($data['actor_id'])) {
+            foreach ($data['actor_id'] as $actor) {
+                $model->actors()->attach(['actor_id' => $actor]);
             }
         }
 
@@ -51,4 +56,5 @@ class MovieRepository extends BaseRepository
 
         return $model;
     }
+
 }

@@ -8,6 +8,8 @@ class UserRole
     const MODERATOR = 'moderator';
     const EDITOR = 'editor';
     const USER = 'user';
+    const SUPERUSER = 'superuser';
+    const NEWUSER = 'new_user';
 
     /**
      * @return string[]
@@ -18,7 +20,9 @@ class UserRole
             self::SUPERADMIN => 'super_admin',
             self::MODERATOR => 'moderator',
             self::EDITOR => 'editor',
-            self::USER => 'user'
+            self::SUPERUSER => 'superuser',
+            self::USER => 'user',
+            self::NEWUSER => 'new_user'
         ];
     }
 
@@ -29,11 +33,13 @@ class UserRole
     public static function getRoleName(string $role_code): string
     {
         return match ($role_code) {
-                self::SUPERADMIN => 'super_admin',
-                self::MODERATOR => 'moderator',
-                self::EDITOR => 'editor',
-                self::USER => 'user',
-                default => '',
-            };
+            self::SUPERADMIN => 'super_admin',
+            self::MODERATOR => 'moderator',
+            self::EDITOR => 'editor',
+            self::SUPERUSER => 'superuser',
+            self::USER => 'user',
+            self::NEWUSER => 'new_user',
+            default => '',
+        };
     }
 }

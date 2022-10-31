@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateGenreRequest extends FormRequest
+class UpdateLatestNewsComentaryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,10 @@ class UpdateGenreRequest extends FormRequest
     public function rules()
     {
         return [
-            'data.title' => 'required|array',
-            'data.title.ru' => 'required',
-            'data.parent_id' => 'nullable',
+            'data.content' => 'required',
+            'data.user_id' => 'required|numeric',
+            'data.movie_news_id' => 'required|numeric',
+            'data.parent_id' => 'nullable|numeric',
         ];
     }
 }

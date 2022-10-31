@@ -26,13 +26,6 @@ return [
             'update',
             'destroy',
         ],
-        'studio-news' => [
-            'index',
-            'store',
-            'show',
-            'update',
-            'destroy',
-        ],
         'genre' => [
             'index',
             'store',
@@ -68,17 +61,47 @@ return [
             'update',
             'destroy',
         ],
-        'movie-new' => [
+        'upload-file' => [
+            'index',
+        ],
+
+        'rating' => [
             'index',
             'store',
             'show',
             'update',
             'destroy',
         ],
-        'upload-file' => [
+        'profession' => [
             'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
         ],
-        'movie-new-comentary' => [
+        'actor' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
+        'latest-new' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+            'validation',
+        ],
+        'latest-new-comentary' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
+        'tag' => [
             'index',
             'store',
             'show',
@@ -98,7 +121,7 @@ return [
             'checkUserToken'
         ],
     ],
-    'suspect_user' => [
+    'new_user' => [
         'user' => [
             'updateYourself',
             'checkUserToken'

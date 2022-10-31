@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreGenreRequest extends FormRequest
+class StoreLatestNewRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,14 @@ class StoreGenreRequest extends FormRequest
     {
         return [
             'data.title' => 'required|array',
-            'data.title.ru' => 'required',
-            'data.parent_id' => 'nullable',
+            'data.date' => 'required',
+            'data.photo_url' => 'required',
+            'data.content' => 'required|array',
+            'data.status' => 'nullable',
+            'data.studios' => 'nullable|array',
+            'data.actors' => 'nullable|array',
+            'data.tags' => 'nullable|array',
+            'data.movies' => 'nullable|array',
         ];
     }
 }

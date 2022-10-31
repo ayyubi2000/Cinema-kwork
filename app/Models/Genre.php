@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Actor;
 use App\Models\Movie;
 use App\Models\Studio;
+use App\Models\Profession;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -95,5 +97,10 @@ class Genre extends BaseModel
     {
         return $this->belongsToMany(Movie::class);
     }
+    public function actor()
+    {
+        return $this->belongsToMany(Actor::class);
+    }
+
 
 }

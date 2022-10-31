@@ -13,7 +13,7 @@ use Throwable;
 class BaseService implements IBaseService
 {
 
-    protected ?BaseRepository $repository = null;
+    protected ? BaseRepository $repository = null;
 
     /**
      * @param array $data

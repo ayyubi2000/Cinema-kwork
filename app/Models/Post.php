@@ -2,22 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Genre;
-use App\Models\Movie;
-use App\Models\Country;
-use App\Models\LatestNew;
-use App\Models\StudioNew;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @OA\Schema(
- *   description="Studio model",
- *   title="Studio",
+ *   description="Post model",
+ *   title="Post",
  *   required={},
- *   @OA\Property(type="integer",description="id of Studio",title="id",property="id",example="1",readOnly="true"),
- *   @OA\Property(type="string",description="name of Studio",title="name",property="name",example="Macbook Pro"),
- *   @OA\Property(type="string",description="sku of Studio",title="sku",property="sku",example="MCBPRO2022"),
- *   @OA\Property(type="integer",description="price of Studio",title="price",property="price",example="99"),
+ *   @OA\Property(type="integer",description="id of Post",title="id",property="id",example="1",readOnly="true"),
+ *   @OA\Property(type="string",description="name of Post",title="name",property="name",example="Macbook Pro"),
+ *   @OA\Property(type="string",description="sku of Post",title="sku",property="sku",example="MCBPRO2022"),
+ *   @OA\Property(type="integer",description="price of Post",title="price",property="price",example="99"),
  *   @OA\Property(type="dateTime",title="created_at",property="created_at",example="2022-07-04T02:41:42.336Z",readOnly="true"),
  *   @OA\Property(type="dateTime",title="updated_at",property="updated_at",example="2022-07-04T02:41:42.336Z",readOnly="true"),
  * )
@@ -27,10 +22,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  *
  * @OA\Schema (
- *   schema="Studios",
- *   title="Studios list",
+ *   schema="Posts",
+ *   title="Posts list",
  *   @OA\Property(title="data",property="data",type="array",
- *     @OA\Items(type="object",ref="#/components/schemas/Studio"),
+ *     @OA\Items(type="object",ref="#/components/schemas/Post"),
  *   ),
  *   @OA\Property(type="string", title="first_page_url",property="first_page_url",example="http://localhost:8080/api/merchant-customers?page=1"),
  *   @OA\Property(type="string", title="last_page_url",property="last_page_url",example="http://localhost:8080/api/merchant-customers?page=3"),
@@ -52,46 +47,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * )
  *
  * @OA\Parameter(
- *      parameter="Studio--id",
+ *      parameter="Post--id",
  *      in="path",
- *      name="Studio_id",
+ *      name="Post_id",
  *      required=true,
- *      description="Id of Studio",
+ *      description="Id of Post",
  *      @OA\Schema(
  *          type="integer",
  *          example="1",
  *      )
  * ),
  */
-class Studio extends BaseModel
+class Post extends BaseModel
 {
     use HasFactory;
 
-    protected $guarded = ['genre_id'];
-    public array $translatable = ['establition_date', 'capitalization', 'profit', 'history'];
+    public array $translatable = [];
 
     protected $casts = [];
-
-    protected $with = ['country', 'genres'];
-
-
-
-    public function country()
-    {
-        return $this->belongsTo(Country::class);
-    }
-
-    public function genres()
-    {
-        return $this->belongsToMany(Genre::class);
-    }
-
-
-    public function movies()
-    {
-        return $this->belongsToMany(Movie::class);
-    }
-
-
-
 }

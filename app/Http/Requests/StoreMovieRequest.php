@@ -46,6 +46,7 @@ class StoreMovieRequest extends FormRequest
             'data.category_id' => 'required',
             'data.studio_id' => 'required|array',
             'data.genre_id' => 'required|array',
+            'data.actor_id' => 'required|array',
         ];
     }
 }
