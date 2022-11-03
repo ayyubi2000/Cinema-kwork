@@ -118,7 +118,7 @@ class LatestNewsComentaryController extends Controller
      */
     public function show($crudgeneratorId): array |Builder|Collection|LatestNewsComentary
     {
-        return $this->service->getModelById($crudgeneratorId);
+        return $this->service->getModelById($crudgeneratorId, ['answears']);
     }
 
     /**

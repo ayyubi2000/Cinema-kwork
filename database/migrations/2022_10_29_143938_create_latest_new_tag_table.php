@@ -12,12 +12,14 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('latest_new_tag', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('latest_new_id')->constrained('latest_news')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('tag_id')->constrained('tags')->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
-        });
+        Schema::create(
+            'latest_new_tag', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('latest_new_id')->constrained('latest_news')->onDelete('cascade')->onUpdate('cascade');
+                $table->foreignId('tag_id')->constrained('tags')->onDelete('cascade')->onUpdate('cascade');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

@@ -170,7 +170,7 @@ class PostController extends Controller
 
     }
 
-    /**
+    /** 
      * @OA\Delete(
      *  path="/api/post/{post_id}",
      *  summary="Delete a Post",

@@ -70,16 +70,6 @@ class Genre extends BaseModel
 
     protected $casts = [];
 
-    public function subGenres()
-    {
-        return $this->hasMany(self::class, 'parent_id', 'id');
-    }
-
-    public function genre()
-    {
-        return $this->belongsTo(self::class, 'parent_id', 'id');
-    }
-
     public function scopeFilter($query, $data)
     {
         if (isset($data['genre']))

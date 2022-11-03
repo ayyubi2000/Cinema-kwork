@@ -26,8 +26,10 @@ class UpdateLatestNewsComentaryRequest extends FormRequest
         return [
             'data.content' => 'required',
             'data.user_id' => 'required|numeric',
-            'data.movie_news_id' => 'required|numeric',
-            'data.parent_id' => 'nullable|numeric',
+            'data.latest_new_id' => 'required|numeric',
+            'data.answear_id' => 'nullable|numeric',
+            'data.status' => 'nullable',
+            'data.validation_message' => 'nullable',
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -65,4 +66,21 @@ class Post extends BaseModel
     public array $translatable = [];
 
     protected $casts = [];
+    protected $with = ['tags'];
+
+    protected $guarded = ['tags'];
+
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function scopeFilter($query, $data)
+    {
+        if (isset($data['status'])) {
+            $query->whereStatus($data['status']);
+        }
+    }
+
 }

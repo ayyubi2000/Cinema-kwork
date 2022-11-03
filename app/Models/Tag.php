@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Scope;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @OA\Schema(
@@ -67,9 +68,16 @@ class Tag extends BaseModel
 
     protected $casts = [];
 
+    protected $guarded = [];
+
     public function latestNews()
     {
         return $this->belongsToMany(LatestNew::class);
+    }
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
     }
 
 

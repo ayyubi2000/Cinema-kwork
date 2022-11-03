@@ -29,6 +29,7 @@ class UpdateSerieRequest extends FormRequest
             'data.title.ru' => 'required',
             'data.date' => 'required',
             'data.movie_id' => 'required|numeric',
+            'data.video_url' => 'nullable',
         ];
     }
 }

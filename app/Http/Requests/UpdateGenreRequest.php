@@ -26,7 +26,6 @@ class UpdateGenreRequest extends FormRequest
         return [
             'data.title' => 'required|array',
             'data.title.ru' => 'required',
-            'data.parent_id' => 'nullable',
         ];
     }
 }

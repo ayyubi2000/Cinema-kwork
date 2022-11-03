@@ -91,7 +91,7 @@ class LatestNew extends BaseModel
      */
     public function actors()
     {
-        return $this->belongsToMany(Actor::class);
+        return $this->belongsToMany(Actor::class)->without(['genres', 'professions']);
     }
 
     /**
@@ -99,42 +99,50 @@ class LatestNew extends BaseModel
      */
     public function movies()
     {
-        return $this->belongsToMany(Movie::class);
+        return $this->belongsToMany(Movie::class)->without(['studios', 'genres', 'actors']);
     }
 
     public function studios()
     {
-        return $this->belongsToMany(Studio::class);
+        return $this->belongsToMany(Studio::class)->without(['country', 'genres']);
     }
 
     public function scopeFilter($query, $data)
     {
-        if (isset($data['validation'])) {
-            $query->whereStatus($data['validation']);
+        if (isset($data['status'])) {
+            $query->whereStatus($data['status']);
         }
 
         if (isset($data['tags'])) {
-            $query->whereHas('tags', function ($q) use ($data) {
-                $q->where('name', $data['tags']);
-            });
+            $query->whereHas(
+                'tags', function ($q) use ($data) {
+                    $q->where('name', $data['tags']);
+                }
+            );
         }
 
         if (isset($data['studios'])) {
-            $query->whereHas('studios', function ($q) use ($data) {
-                $q->where('studios.id', $data['studios']);
-            });
+            $query->whereHas(
+                'studios', function ($q) use ($data) {
+                    $q->where('studios.id', $data['studios']);
+                }
+            );
         }
 
         if (isset($data['actors'])) {
-            $query->whereHas('actors', function ($q) use ($data) {
-                $q->where('actors.id', $data['actors']);
-            });
+            $query->whereHas(
+                'actors', function ($q) use ($data) {
+                    $q->where('actors.id', $data['actors']);
+                }
+            );
         }
 
         if (isset($data['movies'])) {
-            $query->whereHas('movies', function ($q) use ($data) {
-                $q->where('movies.id', $data['movies']);
-            });
+            $query->whereHas(
+                'movies', function ($q) use ($data) {
+                    $q->where('movies.id', $data['movies']);
+                }
+            );
         }
         return $query;
     }

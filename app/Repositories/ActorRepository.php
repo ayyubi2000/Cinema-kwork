@@ -40,13 +40,15 @@ class ActorRepository extends BaseRepository
         $model->fill($data);
         $model->save();
         if (isset($data['genre_id'])) {
+            $model->genres()->detach();
             foreach ($data['genre_id'] as $ganre) {
-                $model->genres()->sync(['genre_id' => $ganre]);
+                $model->genres()->attach(['genre_id' => $ganre]);
             }
         }
         if (isset($data['profession_id'])) {
+            $model->professions()->detach();
             foreach ($data['profession_id'] as $profession) {
-                $model->professions()->sync(['profession_id' => $profession]);
+                $model->professions()->attach(['profession_id' => $profession]);
             }
         }
         return $model;

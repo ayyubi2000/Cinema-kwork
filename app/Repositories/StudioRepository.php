@@ -34,8 +34,9 @@ class StudioRepository extends BaseRepository
         $model->fill($data);
         $model->save();
         if (isset($data['genre_id'])) {
+            $model->genres()->detach();
             foreach ($data['genre_id'] as $genre) {
-                $model->genres()->sync(['genre_id' => $genre]);
+                $model->genres()->attach(['genre_id' => $genre]);
             }
         }
 

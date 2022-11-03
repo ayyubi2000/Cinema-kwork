@@ -28,6 +28,7 @@ class UpdateMovieRequest extends FormRequest
             'data.title.ru' => 'required',
             'data.photo_url' => 'required',
             'data.top' => 'required',
+            'data.type' => 'required',
             'data.age_limit' => 'required',
             'data.production_year' => 'required',
             'data.slogan' => 'required',
@@ -46,6 +47,7 @@ class UpdateMovieRequest extends FormRequest
             'data.category_id' => 'required',
             'data.studio_id' => 'required|array',
             'data.genre_id' => 'required|array',
+            'data.actor_id' => 'required|array',
         ];
     }
 }

@@ -32,7 +32,7 @@ class BaseRepository implements IBaseRepository
         /** @var BaseModel $class */
         $query = $this->getBaseModel()->query();
 
-        if (!is_null(auth()->user()) && auth()->user()->museum_id && method_exists($this->getBaseModel(), 'scopeRole'))
+        if (!is_null(auth()->user()) && auth()->user() && method_exists($this->getBaseModel(), 'scopeRole'))
             $query->role(auth()->user());
 
         return $query->orderByDesc('id');

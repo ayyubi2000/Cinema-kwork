@@ -24,10 +24,16 @@ class UpdateLatestNewRequest extends FormRequest
     public function rules()
     {
         return [
-            'data.title' => 'nullable|array',
-            'data.date' => 'nullable',
-            'data.photo_url' => 'nullable',
-            'data.content' => 'nullable|array',
+            'data.title' => 'required|array',
+            'data.date' => 'required',
+            'data.photo_url' => 'required',
+            'data.content' => 'required|array',
+            'data.studios' => 'nullable|array',
+            'data.actors' => 'nullable|array',
+            'data.tags' => 'nullable|array',
+            'data.movies' => 'nullable|array',
+            'data.status' => 'nullable',
+            'data.validation_message' => 'nullable',
         ];
     }
 }

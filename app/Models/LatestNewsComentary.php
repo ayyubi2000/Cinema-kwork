@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\LatestNew;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -63,16 +65,30 @@ class LatestNewsComentary extends BaseModel
     public array $translatable = [];
 
     protected $casts = [];
+    protected $with = ['latestNew', 'user', 'answears'];
 
-    public function parents()
+    public function answears()
     {
-        return $this->hasMany(self::class, 'parent_id', 'id');
+        return $this->belongsTo(User::class, 'answear_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function latestNew()
+    {
+        return $this->belongsTo(LatestNew::class)->without(['studios', 'movies', 'actors', 'tags']);
     }
     public function scopeFilter($query, $data)
     {
-        if (isset($data['latest_news_id']))
-            $query->whereLatestNewsId($data['latest_news_id']);
+        if (isset($data['latest_new_id']))
+            $query->whereLatestNewId($data['latest_new_id']);
 
-        $query->with('parents');
+        if (isset($data['status']))
+            $query->whereStatus($data['status']);
+
+        $query->with('answears');
     }
 }

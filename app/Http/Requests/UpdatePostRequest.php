@@ -24,7 +24,14 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'data.name' => 'required',
+            'data.photo_url' => 'nullable',
+            'data.title' => 'nullable',
+            'data.content' => 'nullable',
+            'data.user_id' => 'nullable',
+            'data.movie_id' => 'nullable',
+            'data.tags' => 'nullable|array',
+            'data.status' => 'nullable',
+            'data.validation_message' => 'nullable',
         ];
     }
 }

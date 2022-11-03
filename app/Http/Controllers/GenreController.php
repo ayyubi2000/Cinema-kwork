@@ -117,7 +117,7 @@ class GenreController extends Controller
      */
     public function show($crudgeneratorId): array |Builder|Collection|Genre
     {
-        return $this->service->getModelById($crudgeneratorId, ['subGenres']);
+        return $this->service->getModelById($crudgeneratorId);
     }
 
     /**

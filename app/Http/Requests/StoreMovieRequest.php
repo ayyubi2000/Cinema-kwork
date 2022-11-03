@@ -28,6 +28,7 @@ class StoreMovieRequest extends FormRequest
             'data.title.ru' => 'required',
             'data.photo_url' => 'required',
             'data.top' => 'required',
+            'data.type' => 'required',
             'data.age_limit' => 'required',
             'data.production_year' => 'required',
             'data.slogan' => 'required',

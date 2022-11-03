@@ -12,28 +12,31 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('movies', function (Blueprint $table) {
-            $table->id();
-            $table->json('title');
-            $table->text('photo_url');
-            $table->string('top');
-            $table->string('age_limit');
-            $table->string('production_year');
-            $table->string('slogan');
-            $table->string('director');
-            $table->string('scenario');
-            $table->string('producer');
-            $table->string('operator');
-            $table->string('composer');
-            $table->string('painter');
-            $table->string('assembly');
-            $table->json('world_premiere');
-            $table->string('mpaa_rating');
-            $table->string('duration');
-            $table->foreignId('country_id')->constrained('countries');
-            $table->foreignId('category_id')->constrained('categories');
-            $table->timestamps();
-        });
+        Schema::create(
+            'movies', function (Blueprint $table) {
+                $table->id();
+                $table->json('title');
+                $table->text('photo_url');
+                $table->string('top');
+                $table->string('type');
+                $table->string('age_limit');
+                $table->string('production_year');
+                $table->string('slogan');
+                $table->string('director');
+                $table->string('scenario');
+                $table->string('producer');
+                $table->string('operator');
+                $table->string('composer');
+                $table->string('painter');
+                $table->string('assembly');
+                $table->json('world_premiere');
+                $table->string('mpaa_rating');
+                $table->string('duration');
+                $table->foreignId('country_id')->constrained('countries');
+                $table->foreignId('category_id')->constrained('categories');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

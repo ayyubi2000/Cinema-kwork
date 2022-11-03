@@ -107,6 +107,13 @@ return [
             'show',
             'update',
             'destroy',
+        ],
+        'post' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
         ]
     ],
     'editor' => [

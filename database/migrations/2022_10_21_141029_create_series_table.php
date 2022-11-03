@@ -12,14 +12,17 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('series', function (Blueprint $table) {
-            $table->id();
-            $table->string('type');
-            $table->json('title');
-            $table->date('date');
-            $table->foreignId('movie_id')->constrained('movies')->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
-        });
+        Schema::create(
+            'series', function (Blueprint $table) {
+                $table->id();
+                $table->text('video_url');
+                $table->string('type');
+                $table->json('title');
+                $table->date('date');
+                $table->foreignId('movie_id')->constrained('movies')->onDelete('cascade')->onUpdate('cascade');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

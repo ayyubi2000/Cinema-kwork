@@ -28,6 +28,7 @@ class StoreSerieRequest extends FormRequest
             'data.title' => 'required|array',
             'data.title.ru' => 'required',
             'data.date' => 'required',
+            'data.video_url' => 'required',
             'data.movie_id' => 'required|numeric',
         ];
     }

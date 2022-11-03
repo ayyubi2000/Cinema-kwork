@@ -19,9 +19,6 @@ class LatestNewRepository extends BaseRepository
     public function create($data): array |Collection|Builder|BaseModel|null
     {
         $model = $this->getBaseModel();
-        if (Auth::user()->roles[0]->role_code != 'user' || Auth::user()->roles[0]->role_code != 'new_user') {
-            $data['status'] = 1;
-        }
         $model->fill($data);
         $model->save();
         if (isset($data['studios'])) {
@@ -51,32 +48,32 @@ class LatestNewRepository extends BaseRepository
     public function update($data, $id): BaseModel|array |Collection|Builder|null
     {
         $model = $this->findById($id);
-        if (Auth::user()->roles[0]->role_code != 'user' || Auth::user()->roles[0]->role_code != 'new_user') {
-            $data['status'] = 1;
-        }
         $model->fill($data);
         $model->save();
         if (isset($data['studios'])) {
+            $model->studios()->detach();
             foreach ($data['studios'] as $studio) {
-                $model->studios()->attach(['studio_id' => $studio]);
+                $model->studios()->sync(['studio_id' => $studio]);
             }
         }
         if (isset($data['tags'])) {
+            $model->tags()->detach();
             foreach ($data['tags'] as $tag) {
                 $model->tags()->attach(['tags' => $tag]);
             }
         }
         if (isset($data['movies'])) {
+            $model->movies()->detach();
             foreach ($data['movies'] as $movie) {
                 $model->movies()->attach(['movies' => $movie]);
             }
         }
         if (isset($data['actors'])) {
+            $model->actors()->detach();
             foreach ($data['actors'] as $actor) {
-                $model->actors()->attach(['actors' => $actor]);
+                $model->actors()->sync(['actors' => $actor]);
             }
         }
-
         return $model;
     }
 

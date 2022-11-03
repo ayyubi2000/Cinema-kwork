@@ -12,16 +12,19 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->text('photo_url');
-            $table->string('title');
-            $table->text('content');
-            $table->string('status')->default(0);
-            $table->foreignId('movie_id')->constrained('movies')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
-        });
+        Schema::create(
+            'posts', function (Blueprint $table) {
+                $table->id();
+                $table->text('photo_url');
+                $table->string('title');
+                $table->text('content');
+                $table->text('validation_message')->nullable();
+                $table->string('status')->default(0);
+                $table->foreignId('movie_id')->constrained('movies')->onDelete('cascade')->onUpdate('cascade');
+                $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

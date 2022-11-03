@@ -13,10 +13,10 @@ return new class extends Migration {
     public function up()
     {
         Schema::create(
-            'actor_latest_new', function (Blueprint $table) {
+            'post_tag', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('latest_new_id')->constrained('latest_news')->onDelete('cascade')->onUpdate('cascade');
-                $table->foreignId('actor_id')->constrained('actors')->onDelete('cascade')->onUpdate('cascade');
+                $table->foreignId('tag_id')->constrained('tags')->onDelete('cascade')->onUpdate('cascade');
+                $table->foreignId('post_id')->constrained('posts')->onDelete('cascade')->onUpdate('cascade');
                 $table->timestamps();
             }
         );
@@ -29,6 +29,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('actor_latest_new');
+        Schema::dropIfExists('post_tags');
     }
 };

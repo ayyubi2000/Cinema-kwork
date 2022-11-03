@@ -12,12 +12,13 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('genres', function (Blueprint $table) {
-            $table->id();
-            $table->json('title');
-            $table->foreignId('parent_id')->nullable()->constrained('genres')->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
-        });
+        Schema::create(
+            'genres', function (Blueprint $table) {
+                $table->id();
+                $table->json('title');
+                $table->timestamps();
+            }
+        );
     }
 
     /**
