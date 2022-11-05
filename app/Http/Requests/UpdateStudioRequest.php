@@ -31,6 +31,7 @@ class UpdateStudioRequest extends FormRequest
             'data.founders' => 'required',
             'data.country_id' => 'required',
             'data.employees_amount' => 'required',
+            'data.types' => 'required|array',
             'data.capitalization' => 'required',
             'data.profit' => 'required',
             'data.web_site_url' => 'required',

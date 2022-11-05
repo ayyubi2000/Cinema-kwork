@@ -53,7 +53,7 @@ class LatestNewRepository extends BaseRepository
         if (isset($data['studios'])) {
             $model->studios()->detach();
             foreach ($data['studios'] as $studio) {
-                $model->studios()->sync(['studio_id' => $studio]);
+                $model->studios()->attach(['studio_id' => $studio]);
             }
         }
         if (isset($data['tags'])) {
@@ -71,7 +71,7 @@ class LatestNewRepository extends BaseRepository
         if (isset($data['actors'])) {
             $model->actors()->detach();
             foreach ($data['actors'] as $actor) {
-                $model->actors()->sync(['actors' => $actor]);
+                $model->actors()->attach(['actors' => $actor]);
             }
         }
         return $model;

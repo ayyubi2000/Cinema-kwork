@@ -12,20 +12,23 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('studios', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('photo_url');
-            $table->json('establition_date');
-            $table->string('founders');
-            $table->foreignId('country_id')->constrained('countries');
-            $table->string('employees_amount');
-            $table->json('profit');
-            $table->json('capitalization');
-            $table->text('web_site_url');
-            $table->json('history');
-            $table->timestamps();
-        });
+        Schema::create(
+            'studios', function (Blueprint $table) {
+                $table->id();
+                $table->string('title');
+                $table->text('photo_url');
+                $table->json('establition_date');
+                $table->json('types');
+                $table->string('founders');
+                $table->foreignId('country_id')->constrained('countries');
+                $table->string('employees_amount');
+                $table->json('profit');
+                $table->json('capitalization');
+                $table->text('web_site_url');
+                $table->json('history');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

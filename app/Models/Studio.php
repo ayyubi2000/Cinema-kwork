@@ -70,7 +70,7 @@ class Studio extends BaseModel
     protected $guarded = ['genre_id'];
     public array $translatable = ['establition_date', 'capitalization', 'profit', 'history'];
 
-    protected $casts = [];
+    protected $casts = ['types' => 'array'];
 
     protected $with = ['country', 'genres'];
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\AwardsPhotoController;
 use App\Http\Controllers\LatestNewController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\LatestNewsComentaryController;
+use App\Http\Controllers\PostComentaryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\RatingController;
@@ -46,6 +47,7 @@ Route::middleware(['auth:sanctum', 'auth.permission'])->group(
         Route::apiResource('latest-new-comentary', LatestNewsComentaryController::class);
         Route::apiResource('tag', TagController::class);
         Route::apiResource('post', PostController::class);
+        Route::apiResource('post-comentary', PostComentaryController::class);
         Route::get('logout', [AuthController::class, 'logout'])->name('user.logout');
         Route::post('update-yourself', [AuthController::class, 'updateYourself'])->name('user.updateYourself');
         Route::get('check-user-token', [AuthController::class, 'checkUserToken'])->name('user.checkUserToken');

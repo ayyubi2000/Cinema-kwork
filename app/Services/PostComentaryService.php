@@ -6,15 +6,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use App\Repositories\LatestNewsComentaryRepository;
+use App\Repositories\PostComentaryRepository;
 
 
-class LatestNewsComentaryService extends BaseService
+class PostComentaryService extends BaseService
 {
-    public function __construct(LatestNewsComentaryRepository $repository)
+    public function __construct(PostComentaryRepository $repository)
     {
         $this->repository = $repository;
     }
+
 
     public function createModel($data): array |Collection|Builder|Model|null
     {
@@ -32,4 +33,5 @@ class LatestNewsComentaryService extends BaseService
         }
         return $this->repository->update($data, $id);
     }
+
 }

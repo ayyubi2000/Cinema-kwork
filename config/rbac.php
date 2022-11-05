@@ -64,7 +64,6 @@ return [
         'upload-file' => [
             'index',
         ],
-
         'rating' => [
             'index',
             'store',
@@ -109,6 +108,13 @@ return [
             'destroy',
         ],
         'post' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
+        'post-comentary' => [
             'index',
             'store',
             'show',

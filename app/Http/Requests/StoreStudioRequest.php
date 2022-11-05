@@ -28,6 +28,7 @@ class StoreStudioRequest extends FormRequest
             'data.photo_url' => 'required',
             'data.establition_date' => 'required|array',
             'data.establition_date.ru' => 'required',
+            'data.types' => 'required|array',
             'data.founders' => 'required',
             'data.country_id' => 'required',
             'data.employees_amount' => 'required',

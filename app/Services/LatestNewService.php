@@ -35,7 +35,7 @@ class LatestNewService extends BaseService
 
         isset($data['tags']['new']) ? $data['tags'] = $this->createNewTag($data) : $data['tags'] = $data['tags']['id'];
 
-        if (Auth::user()->roles[0]->role_code != 'user' || Auth::user()->roles[0]->role_code != 'new_user') {
+        if (Auth::user()->roles[0]->role_code != 'new_user') {
             $data['status'] = 1;
         }
         return $this->repository->create($data);
@@ -45,7 +45,7 @@ class LatestNewService extends BaseService
     {
         isset($data['tags']['new']) ? $data['tags'] = $this->createNewTag($data) : $data['tags'] = $data['tags']['id'];
 
-        if (Auth::user()->roles[0]->role_code == 'user' || Auth::user()->roles[0]->role_code == 'new_user') {
+        if (Auth::user()->roles[0]->role_code == 'new_user') {
             $data['status'] = 0;
         }
         return $this->repository->update($data, $id);

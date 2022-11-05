@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
-use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @OA\Schema(
- *   description="Post model",
- *   title="Post",
+ *   description="PostComentary model",
+ *   title="PostComentary",
  *   required={},
- *   @OA\Property(type="integer",description="id of Post",title="id",property="id",example="1",readOnly="true"),
- *   @OA\Property(type="string",description="name of Post",title="name",property="name",example="Macbook Pro"),
- *   @OA\Property(type="string",description="sku of Post",title="sku",property="sku",example="MCBPRO2022"),
- *   @OA\Property(type="integer",description="price of Post",title="price",property="price",example="99"),
+ *   @OA\Property(type="integer",description="id of PostComentary",title="id",property="id",example="1",readOnly="true"),
+ *   @OA\Property(type="string",description="name of PostComentary",title="name",property="name",example="Macbook Pro"),
+ *   @OA\Property(type="string",description="sku of PostComentary",title="sku",property="sku",example="MCBPRO2022"),
+ *   @OA\Property(type="integer",description="price of PostComentary",title="price",property="price",example="99"),
  *   @OA\Property(type="dateTime",title="created_at",property="created_at",example="2022-07-04T02:41:42.336Z",readOnly="true"),
  *   @OA\Property(type="dateTime",title="updated_at",property="updated_at",example="2022-07-04T02:41:42.336Z",readOnly="true"),
  * )
@@ -24,10 +23,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  *
  * @OA\Schema (
- *   schema="Posts",
- *   title="Posts list",
+ *   schema="PostComentarys",
+ *   title="PostComentarys list",
  *   @OA\Property(title="data",property="data",type="array",
- *     @OA\Items(type="object",ref="#/components/schemas/Post"),
+ *     @OA\Items(type="object",ref="#/components/schemas/PostComentary"),
  *   ),
  *   @OA\Property(type="string", title="first_page_url",property="first_page_url",example="http://localhost:8080/api/merchant-customers?page=1"),
  *   @OA\Property(type="string", title="last_page_url",property="last_page_url",example="http://localhost:8080/api/merchant-customers?page=3"),
@@ -49,18 +48,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * )
  *
  * @OA\Parameter(
- *      parameter="Post--id",
+ *      parameter="PostComentary--id",
  *      in="path",
- *      name="Post_id",
+ *      name="PostComentary_id",
  *      required=true,
- *      description="Id of Post",
+ *      description="Id of PostComentary",
  *      @OA\Schema(
  *          type="integer",
  *          example="1",
  *      )
  * ),
  */
-class Post extends BaseModel
+class PostComentary extends BaseModel
 {
     use HasFactory;
 
@@ -68,13 +67,12 @@ class Post extends BaseModel
 
     protected $casts = [];
 
-    protected $with = ['tags', 'user:id,name'];
 
-    protected $guarded = ['tags'];
+    protected $with = ['post', 'user:id,name', 'answears'];
 
-    public function tags()
+    public function answears()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsTo(User::class, 'answear_id', 'id');
     }
 
     public function user()
@@ -82,11 +80,19 @@ class Post extends BaseModel
         return $this->belongsTo(User::class);
     }
 
-    public function scopeFilter($query, $data)
+    public function post()
     {
-        if (isset($data['status'])) {
-            $query->whereStatus($data['status']);
-        }
+        return $this->belongsTo(Post::class);
     }
 
+    public function scopeFilter($query, $data)
+    {
+        if (isset($data['post_id']))
+            $query->wherePostId($data['post_id']);
+
+        if (isset($data['status']))
+            $query->whereStatus($data['status']);
+
+        $query->with('answears');
+    }
 }
