@@ -2,20 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Genre;
-use App\Models\ActorNew;
-use App\Models\Profession;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @OA\Schema(
- *   description="Actor model",
- *   title="Actor",
+ *   description="Status model",
+ *   title="Status",
  *   required={},
- *   @OA\Property(type="integer",description="id of Actor",title="id",property="id",example="1",readOnly="true"),
- *   @OA\Property(type="string",description="name of Actor",title="name",property="name",example="Macbook Pro"),
- *   @OA\Property(type="string",description="sku of Actor",title="sku",property="sku",example="MCBPRO2022"),
- *   @OA\Property(type="integer",description="price of Actor",title="price",property="price",example="99"),
+ *   @OA\Property(type="integer",description="id of Status",title="id",property="id",example="1",readOnly="true"),
+ *   @OA\Property(type="string",description="name of Status",title="name",property="name",example="Macbook Pro"),
+ *   @OA\Property(type="string",description="sku of Status",title="sku",property="sku",example="MCBPRO2022"),
+ *   @OA\Property(type="integer",description="price of Status",title="price",property="price",example="99"),
  *   @OA\Property(type="dateTime",title="created_at",property="created_at",example="2022-07-04T02:41:42.336Z",readOnly="true"),
  *   @OA\Property(type="dateTime",title="updated_at",property="updated_at",example="2022-07-04T02:41:42.336Z",readOnly="true"),
  * )
@@ -25,10 +22,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  *
  * @OA\Schema (
- *   schema="Actors",
- *   title="Actors list",
+ *   schema="Statuss",
+ *   title="Statuss list",
  *   @OA\Property(title="data",property="data",type="array",
- *     @OA\Items(type="object",ref="#/components/schemas/Actor"),
+ *     @OA\Items(type="object",ref="#/components/schemas/Status"),
  *   ),
  *   @OA\Property(type="string", title="first_page_url",property="first_page_url",example="http://localhost:8080/api/merchant-customers?page=1"),
  *   @OA\Property(type="string", title="last_page_url",property="last_page_url",example="http://localhost:8080/api/merchant-customers?page=3"),
@@ -50,41 +47,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * )
  *
  * @OA\Parameter(
- *      parameter="Actor--id",
+ *      parameter="Status--id",
  *      in="path",
- *      name="Actor_id",
+ *      name="Status_id",
  *      required=true,
- *      description="Id of Actor",
+ *      description="Id of Status",
  *      @OA\Schema(
  *          type="integer",
  *          example="1",
  *      )
  * ),
  */
-class Actor extends BaseModel
+class Status extends BaseModel
 {
     use HasFactory;
 
-    public array $translatable = ['fact'];
+    public array $translatable = [];
 
-    protected $casts = ['carrera' => 'array', 'birthday' => 'array'];
-
-    protected $with = ['genres', 'professions'];
-
-    protected $guarded = ['genre_id', 'profession_id'];
-
-    public function genres()
-    {
-        return $this->belongsToMany(Genre::class);
-    }
-
-    public function professions()
-    {
-        return $this->belongsToMany(Profession::class);
-    }
-
-    public function latestNews()
-    {
-        return $this->belongsToMany(LatestNew::class);
-    }
+    protected $casts = [];
 }

@@ -25,6 +25,7 @@ class UpdateMovieRequest extends FormRequest
     {
         return [
             'data.title' => 'required|array',
+            'data.orginal_title' => 'required',
             'data.title.ru' => 'required',
             'data.photo_url' => 'required',
             'data.top' => 'required',

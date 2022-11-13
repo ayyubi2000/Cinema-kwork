@@ -16,6 +16,7 @@ return new class extends Migration {
             'movies', function (Blueprint $table) {
                 $table->id();
                 $table->json('title');
+                $table->text('original_title');
                 $table->text('photo_url');
                 $table->string('top');
                 $table->string('type');

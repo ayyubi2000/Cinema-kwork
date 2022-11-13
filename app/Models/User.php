@@ -120,20 +120,28 @@ class User extends BaseModel
     public function getActiveRole()
     {
         return $this->roles()
-            ->where('status', GeneralStatus::STATUS_ACTIVE)
-            ->first();
+            ->where(
+                'status', GeneralStatus::STATUS_ACTIVE
+            )
+            ->first(
+            );
     }
 
     public function scopeFilter($query, $data)
     {
         if (isset($data['status']))
-            $query->whereHas('roles', function ($q) use ($data) {
-                $q->where('status', $data['status']);
-            });
+            $query->whereHas(
+                'roles', function ($q) use ($data) {
+                    $q->where('status', $data['status']);
+                }
+            );
         if (isset($data['role']))
-            $query->whereHas('roles', function ($q) use ($data) {
-                $q->where('role_code', $data['role']);
-            });
+            $query->whereHas(
+                'roles', function ($q) use ($data) {
+                    $q->where('role_code', $data['role']);
+                }
+            );
         return $query;
     }
+
 }

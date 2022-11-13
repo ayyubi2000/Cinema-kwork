@@ -35,9 +35,11 @@ class UploadFileController extends Controller
      */
     public function upload(Request $request): JsonResponse
     {
-        $request->validate([
-            'file' => 'required'
-        ]);
+        $request->validate(
+            [
+                'file' => 'required'
+            ]
+        );
         $pathUpload = $request->file('file')->store('files');
         $path = $request->file('file')->move('uploads', $pathUpload);
         unlink(storage_path('app/' . $pathUpload));

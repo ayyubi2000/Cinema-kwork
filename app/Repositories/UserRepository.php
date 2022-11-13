@@ -31,7 +31,7 @@ class UserRepository extends BaseRepository
                 UserRoles::create([
                     'user_id' => $model->id,
                     'role_code' => $role['role_code'],
-                    'status' => $role['status'] ?GeneralStatus::STATUS_ACTIVE : GeneralStatus::STATUS_NOT_ACTIVE,
+                    'status' => $role['status'] ? GeneralStatus::STATUS_ACTIVE : GeneralStatus::STATUS_NOT_ACTIVE,
                 ]);
             }
         }
@@ -53,7 +53,7 @@ class UserRepository extends BaseRepository
                 UserRoles::create([
                     'user_id' => $model->id,
                     'role_code' => $role['role_code'],
-                    'status' => $role['status'] ?GeneralStatus::STATUS_ACTIVE : GeneralStatus::STATUS_NOT_ACTIVE,
+                    'status' => $role['status'] ? GeneralStatus::STATUS_ACTIVE : GeneralStatus::STATUS_NOT_ACTIVE,
                 ]);
             }
         }

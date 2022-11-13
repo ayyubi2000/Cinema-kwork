@@ -1,23 +1,24 @@
 <?php
-use App\Http\Controllers\ActorController;
-use App\Http\Controllers\AwardsPhotoController;
-use App\Http\Controllers\LatestNewController;
-use App\Http\Controllers\MovieController;
-use App\Http\Controllers\LatestNewsComentaryController;
-use App\Http\Controllers\PostComentaryController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProfessionController;
-use App\Http\Controllers\RatingController;
-use App\Http\Controllers\SerieController;
-use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ActorController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\SerieController;
+use App\Http\Controllers\RatingController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\StudioController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LatestNewController;
+use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\UploadFileController;
+use App\Http\Controllers\AwardsPhotoController;
+use App\Http\Controllers\PostComentaryController;
+use App\Http\Controllers\LatestNewsComentaryController;
 use App\Http\Controllers\EmailVerificationCodeController;
 
 
@@ -47,6 +48,7 @@ Route::middleware(['auth:sanctum', 'auth.permission'])->group(
         Route::apiResource('latest-new-comentary', LatestNewsComentaryController::class);
         Route::apiResource('tag', TagController::class);
         Route::apiResource('post', PostController::class);
+        Route::apiResource('status', StatusController::class);
         Route::apiResource('post-comentary', PostComentaryController::class);
         Route::get('logout', [AuthController::class, 'logout'])->name('user.logout');
         Route::post('update-yourself', [AuthController::class, 'updateYourself'])->name('user.updateYourself');
