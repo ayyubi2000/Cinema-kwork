@@ -28,6 +28,7 @@ services:
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
+      - ./:/var/www
       - ./docker-compose/mysql:/docker-entrypoint-initdb.d
     networks:
       - travellist
