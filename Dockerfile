@@ -5,6 +5,12 @@ ARG user
 ARG uid
 
 # Install system dependencies
+RUN apt-get update && apt-get install -y libpq-dev gcc
+
+RUN apt-get update \
+    && apt-get install libpq-dev gcc -y \
+    && apt-get clean
+
 RUN  apt-get update &&  apt-get install -y \
     curl \
     libpng-dev \
