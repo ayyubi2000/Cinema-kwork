@@ -22,10 +22,7 @@ use App\Http\Controllers\LatestNewsComentaryController;
 use App\Http\Controllers\EmailVerificationCodeController;
 
 
-
-
 Route::post('login', [AuthController::class, 'login']);
-Route::get('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('reset-password', [AuthController::class, 'resetPassword']);
 Route::post('email-verification', [EmailVerificationCodeController::class, 'sendEmailVerification']);
@@ -59,13 +56,30 @@ Route::middleware(['auth:sanctum', 'auth.permission'])->group(
 );
 
 
-// Route::prefix('ui')->name('ui.')->group(function () {
-//     Route::apiResource('region', RegionController::class)->only(['index', 'show']);
-// });
+Route::prefix('ui')->name('ui.')->group(function () {
+    Route::apiResource('country', CountryController::class)->only(['index', 'show']);
+    Route::apiResource('category', CategoryController::class)->only(['index', 'show']);
+    Route::apiResource('studio', StudioController::class)->only(['index', 'show']);
+    Route::apiResource('movie', MovieController::class)->only(['index', 'show']);
+    Route::apiResource('genre', GenreController::class)->only(['index', 'show']);
+    Route::apiResource('awards-photos', AwardsPhotoController::class)->only(['index', 'show']);
+    Route::apiResource('serie', SerieController::class)->only(['index', 'show']);
+    Route::apiResource('rating', RatingController::class)->only(['index', 'show']);
+    Route::apiResource('profession', ProfessionController::class)->only(['index', 'show']);
+    Route::apiResource('actor', ActorController::class)->only(['index', 'show']);
+    Route::apiResource('latest-new', LatestNewController::class)->only(['index', 'show']);
+    Route::apiResource('latest-new-comentary', LatestNewsComentaryController::class)->only(['index', 'show']);
+    Route::apiResource('tag', TagController::class)->only(['index', 'show']);
+    Route::apiResource('post', PostController::class)->only(['index', 'show']);
+    Route::apiResource('status', StatusController::class)->only(['index', 'show']);
+    Route::apiResource('post-comentary', PostComentaryController::class)->only(['index', 'show']);
+    Route::post('/upload-file', [UploadFileController::class, 'upload'])->name('upload-file.index');
+});
 
 
 Route::get(
-    'token-status', function () {
+    'token-status',
+    function () {
         return "not authorized";
     }
 )->name(

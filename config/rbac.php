@@ -262,17 +262,101 @@ return [
             'updateYourself',
             'checkUserToken'
         ],
+        'latest-new-comentary' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
+        'latest-new' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
+        'post' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
+        'post-comentary' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
     ],
     'user' => [
         'user' => [
             'updateYourself',
             'checkUserToken'
         ],
+        'latest-new-comentary' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
+        'latest-new' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
+        'post' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
+        'post-comentary' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
     ],
     'super_user' => [
         'user' => [
             'updateYourself',
             'checkUserToken'
+        ],
+        'latest-new-comentary' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
+        'latest-new' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
+        'post' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ],
+        'post-comentary' => [
+            'index',
+            'store',
+            'show',
+            'update',
+            'destroy',
         ],
     ]
 ];

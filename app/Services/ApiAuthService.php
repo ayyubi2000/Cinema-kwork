@@ -45,7 +45,7 @@ class ApiAuthService extends BaseService
 
         if ($emailVerification and Hash::check($data['code'], $emailVerification->code)) {
             $data['password'] = bcrypt($data['password']);
-            $data['roles'] = [['role_code' => 'suspect_user', 'status' => true]];
+            $data['roles'] = [['role_code' => 'new_user', 'status' => true]];
             $data['email_verified_at'] = date('Y-m-d');
             $user = $this->repository->create($data);
             $emailVerification->delete();
