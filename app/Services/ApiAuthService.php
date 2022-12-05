@@ -27,7 +27,7 @@ class ApiAuthService extends BaseService
     public function login(array $data): JsonResponse
     {
         /*@var $model User */
-        $model = $this->repository->findByEmail($data['email']);
+        $model = $this->repository->findByEmailOrName($data['email']);
         if ($model and Hash::check($data['password'], $model->password)) {
             return ApiResponse::success([
                 'type' => 'Bearer',

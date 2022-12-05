@@ -71,6 +71,17 @@ class UserRepository extends BaseRepository
             ->where('email', '=', $email)
             ->first();
     }
+    /**
+     * @throws Throwable
+     */
+    public function findByEmailOrName($emailOrName)
+    {
+        $model = $this->getBaseModel();
+        return $model::query()
+            ->where('email', '=', $emailOrName)
+            ->orWhere('name', '=', $emailOrName)
+            ->first();
+    }
 
     /**
      * @param string $email
@@ -80,7 +91,7 @@ class UserRepository extends BaseRepository
     public function createToken(string $email): string
     {
 
-        $model = $this->findByEmail($email);
+        $model = $this->findByEmailOrName($email);
         return $model->createToken('auth_token')->plainTextToken;
     }
 
